@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">DizzyRadio</string>
+    <string name="app_name_small">dizzi radio</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="request_a_song">Request a song</string>
+    <string name="terms_and_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="about">About</string>
+    <string name="radio_player">Radio Player</string>
+    <string name="now_playing">now playing</string>
+    <string name="enjoy_unlimited_music_sensation">Enjoy unlimited music sensation</string>
+    <string name="loading">loading...</string>
+    <string name="artist_name">artist name</string>
+    <string name="listeners">Listeners: </string>
+    <string name="not_available">n/a</string>
+    <string name="unknown">unknown</string>
+    <string name="placeholder">Placeholder</string>
+    <string name="song_title">Unknown</string>
+    <string name="notification_permission_required">Notification permission is required.</string>
+    <string name="go_to_settings">Go to settings</string>
+</resources>
