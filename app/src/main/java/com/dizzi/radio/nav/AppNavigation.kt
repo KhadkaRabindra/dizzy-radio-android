@@ -23,10 +23,10 @@ fun AppNavigation(
             composable(screen.route) {
                 when (screen) {
                     Screens.RadioPlayerScreen -> RadioPlayerScreen(drawerState, appViewModel)
-                    Screens.AboutScreen -> AboutScreen()
-                    Screens.TermsAndConditionsScreen -> TermsAndConditionScreen()
-                    Screens.PrivacyPolicyScreen -> PrivacyPolicyScreen()
-                    Screens.RequestASongScreen -> RequestASongScreen()
+                    Screens.AboutScreen -> AboutScreen(drawerState)
+                    Screens.TermsAndConditionsScreen -> TermsAndConditionScreen(drawerState)
+                    Screens.PrivacyPolicyScreen -> PrivacyPolicyScreen(drawerState)
+                    Screens.RequestASongScreen -> RequestASongScreen(drawerState)
                     else -> {
 
                     }

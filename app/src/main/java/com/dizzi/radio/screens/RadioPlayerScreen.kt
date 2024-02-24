@@ -217,8 +217,10 @@ fun RadioPlayerScreen(drawerState: DrawerState, appViewModel: AppViewModel) {
                                 .clickable {
                                     appViewModel.togglePlayPause()
                                     context.startMediaPlaybackService(
-                                        artistName = appViewModel.artistName.value ?: context.getString(R.string.unknown),
-                                        titleName = appViewModel.titleName.value ?: context.getString(R.string.unknown),
+                                        artistName = appViewModel.artistName.value
+                                            ?: context.getString(R.string.unknown),
+                                        titleName = appViewModel.titleName.value
+                                            ?: context.getString(R.string.unknown),
                                         isPlaying = appViewModel.isPlaying.value ?: true
                                     )
                                 },
@@ -356,6 +358,54 @@ fun TopAppBar(onSettingIconClick: () -> Unit) {
                 fontFamily = leagueSpartanFamily, fontWeight = FontWeight.Normal,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
+            )
+        }
+    }
+
+}
+
+
+@Composable
+fun DefaultTopAppBar(onSettingIconClick: () -> Unit) {
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.Black)
+            .padding(top = 24.dp, start = 24.dp, end = 24.dp),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {Text(
+            modifier = Modifier
+                .weight(1f),
+            color = Color.White,
+            fontSize = 24.sp,
+            text = stringResource(id = R.string.app_name_small),
+            fontFamily = leagueSpartanFamily, fontWeight = FontWeight.Normal,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+
+
+            Spacer(
+                modifier = Modifier
+                    .weight(1f)
+            )
+
+            Image(
+                modifier = Modifier
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = rememberRipple(color = Color.Blue)
+                    ) {
+                        onSettingIconClick()
+                    },
+                painter = painterResource(id = R.drawable.nav_bar),
+                contentDescription = "",
             )
         }
     }
