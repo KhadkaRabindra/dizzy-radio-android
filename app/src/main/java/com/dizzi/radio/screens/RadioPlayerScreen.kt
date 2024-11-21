@@ -1,13 +1,5 @@
 package com.dizzi.radio.screens
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.media.AudioManager
-import android.os.Build
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,14 +14,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.ripple.RippleAlpha
-import androidx.compose.material.ripple.RippleTheme
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
@@ -78,18 +68,14 @@ fun RadioPlayerScreen(drawerState: DrawerState, appViewModel: AppViewModel) {
     val listenerCount = appViewModel.listenerCount.observeAsState()
 
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
-        Scaffold(
-            topBar = {
-                TopAppBar {
-                    coroutineScope.launch {
-                        if (drawerState.isClosed)
-                            drawerState.open()
-                        else
-                            drawerState.close()
-                    }
+        Scaffold(topBar = {
+            TopAppBar {
+                coroutineScope.launch {
+                    if (drawerState.isClosed) drawerState.open()
+                    else drawerState.close()
                 }
             }
-        ) { innerPadding ->
+        }) { innerPadding ->
 
             Box(modifier = Modifier) {
                 Column(
@@ -126,7 +112,8 @@ fun RadioPlayerScreen(drawerState: DrawerState, appViewModel: AppViewModel) {
                                 fontSize = 40.sp,
                                 text = appViewModel.titleName.value
                                     ?: stringResource(R.string.unknown),
-                                fontFamily = leagueSpartanFamily, fontWeight = FontWeight.Normal,
+                                fontFamily = leagueSpartanFamily,
+                                fontWeight = FontWeight.Normal,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
@@ -137,7 +124,8 @@ fun RadioPlayerScreen(drawerState: DrawerState, appViewModel: AppViewModel) {
                                 fontSize = 18.sp,
                                 text = appViewModel.artistName.value
                                     ?: stringResource(R.string.unknown),
-                                fontFamily = leagueSpartanFamily, fontWeight = FontWeight.Normal,
+                                fontFamily = leagueSpartanFamily,
+                                fontWeight = FontWeight.Normal,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
@@ -162,7 +150,8 @@ fun RadioPlayerScreen(drawerState: DrawerState, appViewModel: AppViewModel) {
                                 color = Color.White,
                                 fontSize = 20.sp,
                                 text = stringResource(id = R.string.listeners),
-                                fontFamily = leagueSpartanFamily, fontWeight = FontWeight.Normal,
+                                fontFamily = leagueSpartanFamily,
+                                fontWeight = FontWeight.Normal,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
@@ -172,7 +161,8 @@ fun RadioPlayerScreen(drawerState: DrawerState, appViewModel: AppViewModel) {
                                 color = Matterhorn,
                                 fontSize = 20.sp,
                                 text = (listenerCount.value ?: 0).toString(),
-                                fontFamily = leagueSpartanFamily, fontWeight = FontWeight.Normal,
+                                fontFamily = leagueSpartanFamily,
+                                fontWeight = FontWeight.Normal,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
                             )
@@ -236,29 +226,12 @@ fun RadioPlayerScreen(drawerState: DrawerState, appViewModel: AppViewModel) {
     }
 }
 
-private object RedRippleTheme : RippleTheme {
-
-    @Composable
-    override fun defaultColor() =
-        RippleTheme.defaultRippleColor(
-            Color.Red,
-            lightTheme = true
-        )
-
-    @Composable
-    override fun rippleAlpha(): RippleAlpha =
-        RippleTheme.defaultRippleAlpha(
-            Color.Black,
-            lightTheme = true
-        )
-}
 
 @Composable
 fun SliderVolume(appViewModel: AppViewModel) {
     val isMediaPrepared = appViewModel.isMediaPrepared.observeAsState()
     val sliderPosition = appViewModel.mediaPlayerVolume.observeAsState()
-    Slider(
-        value = sliderPosition.value ?: 0f,
+    Slider(value = sliderPosition.value ?: 0f,
         enabled = isMediaPrepared.value ?: false,
         valueRange = 0f..MEDIA_PLAYER_MAX_VOLUME,
         onValueChange = {
@@ -279,8 +252,7 @@ fun Slider(appViewModel: AppViewModel) {
             },
             valueRange = 0f..(totalDuration.value ?: 0).toFloat(),
             colors = SliderDefaults.colors(
-                thumbColor = Color.White,
-                activeTrackColor = Color.White
+                thumbColor = Color.White, activeTrackColor = Color.White
             )
         )
     }
@@ -305,32 +277,29 @@ fun TopAppBar(onSettingIconClick: () -> Unit) {
             .padding(top = 24.dp, bottom = 24.dp, start = 24.dp, end = 24.dp),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                modifier = Modifier
-                    .weight(1f),
+                modifier = Modifier.weight(1f),
                 color = Color.White,
                 fontSize = 24.sp,
                 text = stringResource(id = R.string.app_name_small),
-                fontFamily = leagueSpartanFamily, fontWeight = FontWeight.Normal,
+                fontFamily = leagueSpartanFamily,
+                fontWeight = FontWeight.Normal,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
 
             Spacer(
-                modifier = Modifier
-                    .weight(1f)
+                modifier = Modifier.weight(1f)
             )
 
             Image(
-                modifier = Modifier
-                    .clickable(
+                modifier = Modifier.clickable(
                         interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberRipple(color = Color.Blue)
+                        indication = ripple(color = Color.Blue)
                     ) {
                         onSettingIconClick()
                     },
@@ -345,7 +314,8 @@ fun TopAppBar(onSettingIconClick: () -> Unit) {
                 color = Color.White,
                 fontSize = 40.sp,
                 text = stringResource(id = R.string.now_playing),
-                fontFamily = leagueSpartanFamily, fontWeight = FontWeight.Normal,
+                fontFamily = leagueSpartanFamily,
+                fontWeight = FontWeight.Normal,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -355,7 +325,8 @@ fun TopAppBar(onSettingIconClick: () -> Unit) {
                 color = Color.White,
                 fontSize = 15.sp,
                 text = stringResource(id = R.string.enjoy_unlimited_music_sensation),
-                fontFamily = leagueSpartanFamily, fontWeight = FontWeight.Normal,
+                fontFamily = leagueSpartanFamily,
+                fontWeight = FontWeight.Normal,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -375,32 +346,30 @@ fun DefaultTopAppBar(onSettingIconClick: () -> Unit) {
             .padding(top = 24.dp, start = 24.dp, end = 24.dp),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
-        ) {Text(
-            modifier = Modifier
-                .weight(1f),
-            color = Color.White,
-            fontSize = 24.sp,
-            text = stringResource(id = R.string.app_name_small),
-            fontFamily = leagueSpartanFamily, fontWeight = FontWeight.Normal,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
+        ) {
+            Text(
+                modifier = Modifier.weight(1f),
+                color = Color.White,
+                fontSize = 24.sp,
+                text = stringResource(id = R.string.app_name_small),
+                fontFamily = leagueSpartanFamily,
+                fontWeight = FontWeight.Normal,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
 
 
             Spacer(
-                modifier = Modifier
-                    .weight(1f)
+                modifier = Modifier.weight(1f)
             )
 
             Image(
-                modifier = Modifier
-                    .clickable(
+                modifier = Modifier.clickable(
                         interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberRipple(color = Color.Blue)
+                        indication = ripple(color = Color.Blue)
                     ) {
                         onSettingIconClick()
                     },

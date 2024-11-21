@@ -22,6 +22,7 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -103,7 +104,7 @@ fun MainScreen(appViewModel: AppViewModel) {
                                             .padding(top = 10.dp)
                                             .clickable(
                                                 interactionSource = remember { MutableInteractionSource() },
-                                                indication = rememberRipple(color = Color.Blue)
+                                                indication = ripple(color = Color.Blue)
                                             ) {
                                                 scope.launch {
                                                     if (drawerState.isClosed)
@@ -127,7 +128,7 @@ fun MainScreen(appViewModel: AppViewModel) {
                                             .padding(start = 40.dp)
                                             .clickable(
                                                 interactionSource = remember { MutableInteractionSource() },
-                                                indication = rememberRipple(color = Color.Blue)
+                                                indication = ripple(color = Color.Blue)
                                             ) {
                                                 navController.navigate(it.route)
                                                 scope.launch {
