@@ -60,19 +60,17 @@ dependencies {
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
     implementation("androidx.activity:activity-compose:1.9.3")
-    implementation(platform("androidx.compose:compose-bom:2024.11.00"))
+    implementation(platform("androidx.compose:compose-bom:2024.12.01"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
-
-
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
     implementation("androidx.activity:activity-compose:1.9.3")
-    implementation("com.google.accompanist:accompanist-webview:0.28.0")
+    implementation("com.google.accompanist:accompanist-webview:0.36.0")
     implementation("com.google.android.exoplayer:exoplayer:2.19.1")
-    implementation("androidx.navigation:navigation-compose:2.8.4")
+    implementation("androidx.navigation:navigation-compose:2.8.5")
 
     // Gson
     implementation("com.google.code.gson:gson:2.11.0")
@@ -104,9 +102,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
     //paging
-    implementation ("androidx.paging:paging-compose:3.3.4")
-    implementation ("androidx.paging:paging-runtime-ktx:3.3.4")
-    implementation("androidx.paging:paging-common-ktx:3.3.4")
+    implementation ("androidx.paging:paging-compose:3.3.5")
+    implementation ("androidx.paging:paging-runtime-ktx:3.3.5")
+    implementation("androidx.paging:paging-common-ktx:3.3.5")
 
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
@@ -116,20 +114,20 @@ dependencies {
     implementation ("androidx.activity:activity-compose:1.9.3")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
-    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.1")
 
-    implementation ("androidx.compose.runtime:runtime-livedata:1.7.5")
+    implementation ("androidx.compose.runtime:runtime-livedata:1.7.6")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
 
-    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-database")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2024.11.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.12.01"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
